@@ -9,11 +9,13 @@ public class Movement : MonoBehaviour
     public TMP_InputField zspeed_input;
     public TMP_InputField xacc_input;
     public TMP_InputField zacc_input;
+    public TMP_InputField zStart_input;
+    public TMP_InputField xStart_input;
     public TMP_InputField time_input;
 
-    public float speedX=0f, speedZ=0f ;
-
-    public float accelerationX = 0f, accelerationZ = 0f, Time_limit = 100f;
+    private float speedX=0f, speedZ=0f, startX, startZ ;
+    
+    private float accelerationX = 0f, accelerationZ = 0f, Time_limit = 100f;
     private float TimePassed = 0f, distance = 0f, result_Speed;
     private Vector3 st_point;
 
@@ -48,6 +50,9 @@ public class Movement : MonoBehaviour
             Time.timeScale = 1f;
             speedX = xspeed_input.text == "" || xspeed_input.text == "-" ? 0 : float.Parse(xspeed_input.text);
             speedZ = zspeed_input.text == "" || zspeed_input.text == "-" ? 0 : float.Parse(zspeed_input.text);
+            startX = xStart_input.text is "" or "-" ? 0 : float.Parse(xStart_input.text);
+            startZ = zStart_input.text is "" or "-" ? 0 : float.Parse(zStart_input.text);
+            setDefault();
         }
         accelerationX = xacc_input.text == "" || xacc_input.text == "-" ? 0 : float.Parse(xacc_input.text);
         accelerationZ = zacc_input.text == "" || zacc_input.text == "-" ? 0 : float.Parse(zacc_input.text);
@@ -73,5 +78,10 @@ public class Movement : MonoBehaviour
 
         distance += Mathf.Sqrt(Mathf.Pow(transform.position.z - st_point.z, 2)
             + Mathf.Pow(transform.position.x - st_point.x, 2)); //длина вектора пройденного пути
+    }
+
+    private void setDefault()
+    {
+        transform.position= new Vector3(startX, 25f, startZ);
     }
 }

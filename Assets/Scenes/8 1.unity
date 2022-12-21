@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.618947, g: 0.56829685, b: 0.6012065, a: 1}
+  m_IndirectSpecularColor: {r: 0.68479383, g: 0.6292286, b: 0.6658395, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -537,6 +537,8 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
+    - m_Text: 0
+      m_Image: {fileID: 0}
     - m_Text: 1
       m_Image: {fileID: 0}
     - m_Text: 2
@@ -1801,7 +1803,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5590,6 +5592,8 @@ MonoBehaviour:
   - {fileID: 7596760719147245544, guid: 414229468cb3cf942b082fdccb5a98ab, type: 3}
   Lensescount: {fileID: 141254651}
   LenseIndex: {fileID: 277448759}
+  LenseIndex_Slider: {fileID: 0}
+  slider_text: {fileID: 0}
   SInput: {fileID: 1435667100}
 --- !u!1 &1770908872
 GameObject:

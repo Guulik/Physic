@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Mirror
   - Refract
+  - Target
   layers:
   - Default
   - TransparentFX

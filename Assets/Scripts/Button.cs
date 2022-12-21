@@ -7,6 +7,10 @@ public class Button : MonoBehaviour
    {
       Time.timeScale = Time.timeScale==0f ? 1f: 0f;
    }
+   public void Restart1()
+   {
+      SceneManager.LoadScene("1 lab");
+   }
    public void Restart3()
    {
       SceneManager.LoadScene("3");
@@ -30,6 +34,14 @@ public class Button : MonoBehaviour
    public void Restart71()
    {
       SceneManager.LoadScene("7 1");
+   }
+   public void Restart82()
+   {
+      SceneManager.LoadScene("8 2");
+   }
+   public void Restart822()
+   {
+      SceneManager.LoadScene("8 2 lenses");
    }
    public void setPos1()
    {

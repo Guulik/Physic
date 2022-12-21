@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class ShootLaser : MonoBehaviour
 {
-    [Range(-90f,90f)] private float angle;
+    [Range(-180f,180f)] private float angle;
     [Range(-7f,7f)]private float pos;
     [SerializeField] private Slider posInput;
     [SerializeField] private Slider angleInput;
