@@ -4,7 +4,7 @@ using TMPro;
 public class CircleMovement : MonoBehaviour
 {
     public float radius, Frequency;
-    public float angularSpeed, linearSpeed, distance, RotationsCount, passedTime, angle, timer;
+    private float angularSpeed, linearSpeed, distance, RotationsCount, passedTime, angle, timer;
 
     public TextMeshProUGUI outputText;
     public TMP_InputField RadiusInput;
@@ -12,6 +12,10 @@ public class CircleMovement : MonoBehaviour
    
     private float prevRadius, prevFrequency, deltaAngle;
 
+    void Start()
+    {
+        Time.timeScale = 0f;
+    }
     void physCalc() //расчеты физ. величин (угловая скорость, линейная и т.д
     {
         angularSpeed = 2 * Mathf.PI * Frequency;
@@ -19,25 +23,8 @@ public class CircleMovement : MonoBehaviour
         RotationsCount = Frequency * passedTime;
         distance = 2 * Mathf.PI * radius * RotationsCount;
     }
-    void setDefault()
-    {
-        //если мы меняем одно из начальных значений, то нужно поставить объект в начальную позицию
-        if (prevRadius != radius || prevFrequency != Frequency )
-        {
-            passedTime = 0f; //обнуляем таймер
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            transform.position = new Vector3(-radius, 0f, 0f); //ставим в левую точку окружности, потому что
-                                                               //положительный угол поворота = поворот направо
-            angle = 0f;
-        }
-        prevFrequency = Frequency;
-        prevRadius = radius;
-
-    }
-
     void FixedUpdate()
     {
-        setDefault();
         physCalc();
         passedTime += Time.fixedDeltaTime; //счетчик времени
         transform.position += linearSpeed * transform.forward  * Time.fixedDeltaTime;//наш танк движется всегда вперед,
@@ -48,6 +35,11 @@ public class CircleMovement : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0f)
+        {
+            readInputs();
+            setDefault();
+        }
         //вывод
         outputText.text = string.Format("Число оборотов: {0:f3}" + 
            "\nУгловая скорость: {1:f3}" +
@@ -59,12 +51,24 @@ public class CircleMovement : MonoBehaviour
            "\n--------"+
            "\nВремя: {7:f3}",
            RotationsCount, angularSpeed, deltaAngle, distance, linearSpeed, transform.position.x, transform.position.z,passedTime);
-
-        //ввод
+        
+        
+    }
+    private void readInputs()
+    {
         radius = RadiusInput.text == "" || RadiusInput.text == "-" ? 0 : float.Parse(RadiusInput.text);
         Frequency = FrequencyInput.text == "" || FrequencyInput.text == "-" ? 0 : float.Parse(FrequencyInput.text);
+       
     }
-
+    void setDefault()
+    { 
+        passedTime = 0f; //обнуляем таймер
+       transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+       transform.position = new Vector3(-radius, 0f, 0f); //ставим в левую точку окружности, потому что
+       //положительный угол поворота = поворот направо
+       angle = 0f;
+       
+    }
 }
 
 

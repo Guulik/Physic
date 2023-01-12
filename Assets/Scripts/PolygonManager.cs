@@ -1,13 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
-using System.Linq;
-using static System.Random;
+
 
 public class PolygonManager : MonoBehaviour
 {
@@ -18,7 +11,7 @@ public class PolygonManager : MonoBehaviour
     System.Random random = new();
 
 
-    class Box
+    public class Box
     {
         public BoundsInt bounds;
 
@@ -38,11 +31,11 @@ public class PolygonManager : MonoBehaviour
         }
     }
 
-    private List<Box> BoxesPlaced;
+    public List<Box> BoxesPlaced;
 
     public void PlaceBoxes()
     {
-        for (int i = 0; i < random.Next(4, 7); i++)
+        for (int i = 0; i < random.Next(7, 12); i++)
         {
             Vector3Int location = new Vector3Int(
                 random.Next(-16,16),
@@ -60,9 +53,9 @@ public class PolygonManager : MonoBehaviour
             Box newBox = new Box(location, roomSize);
             Box buffer = new Box(location + new Vector3Int(-1, 0, -1), roomSize + new Vector3Int(2, 0, 2));
 
-            foreach (var lense in BoxesPlaced)
+            foreach (var box in BoxesPlaced)
             {
-                if (Box.Intersect(lense, buffer))
+                if (Box.Intersect(box, buffer))
                 {
                     add = false;
                     break;

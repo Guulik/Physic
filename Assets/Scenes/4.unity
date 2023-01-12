@@ -3347,9 +3347,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 1
-  Speed: 0
-  A_acceleration: 0
-  B_acceleration: 0
   outputText: {fileID: 1695985800}
   RadiusInput: {fileID: 1245421690}
   SpeedInput: {fileID: 1980867697}
@@ -5001,6 +4998,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1707319120}
         m_TargetAssemblyTypeName: Button, Assembly-CSharp
         m_MethodName: Go
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1256520038}
+        m_TargetAssemblyTypeName: SpiralMovement, Assembly-CSharp
+        m_MethodName: ReadInputs
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

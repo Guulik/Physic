@@ -3,7 +3,7 @@ using UnityEngine.Serialization;
 
 public class CameraMovement : MonoBehaviour
 {
-     public GameObject mainObj;
+    public GameObject mainObj;
     private float rad;
 
     void Update()

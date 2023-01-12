@@ -20,18 +20,13 @@ public class RefractAdjust : MonoBehaviour
     {
         s = 1f;
         n = 2f;
-        
     }
 
     public void Update()
     {
-        transform.localScale = new Vector3(transform.localScale.x,
+        transform.localScale = new Vector3(s,
             transform.localScale.y,
-            100f*s);
-        //Collider collider = transform.gameObject.GetComponent<BoxCollider>();
+            transform.localScale.z);
         
     }
-    
-
-    
 }

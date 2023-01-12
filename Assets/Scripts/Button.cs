@@ -26,6 +26,9 @@ public class Button : MonoBehaviour
    public void Restart62()
    {
       SceneManager.LoadScene("6 2");
+   }public void Restart61()
+   {
+      SceneManager.LoadScene("6 1");
    }
    public void Restart7()
    {
