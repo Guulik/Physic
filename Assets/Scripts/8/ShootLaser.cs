@@ -1,10 +1,15 @@
-using JetBrains.Annotations;
+using System.Collections;
+using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
 public class ShootLaser : MonoBehaviour
 {
-    [Range(-90f,270f)] private float angle;
+    [Range(-180f,180f)] private float angle;
+    [Range(-7f,7f)]private float pos;
+    [SerializeField] private Slider posInput;
     [SerializeField] private Slider angleInput;
     public Material Material; 
     LaserBeam beam;
@@ -17,8 +22,8 @@ public class ShootLaser : MonoBehaviour
         beam = new LaserBeam(transform.position, transform.forward, Material);
 
         angle = angleInput.value;
-
-        transform.rotation = Quaternion.Euler(0f, angle+90f,0f);
-   
+        pos = posInput.value*7f;
+        transform.rotation = Quaternion.Euler(0f, angle,0f);
+        transform.position = new Vector3(pos, 0f, -1f);
     }
 }

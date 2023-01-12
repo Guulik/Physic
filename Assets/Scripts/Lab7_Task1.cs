@@ -16,7 +16,7 @@ public class Lab7_Task1 : MonoBehaviour
     [FormerlySerializedAs("angleInput")] public TMP_InputField Af;
     
     private Rigidbody _rb;
-    private float timer;
+    private float timer = 0f, passedTime = 0f;
     //private bool flag;
 
     private Rigidbody rb;

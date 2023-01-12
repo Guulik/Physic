@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 using TMPro;
 
 public class Punch2 : MonoBehaviour
@@ -12,8 +11,6 @@ public class Punch2 : MonoBehaviour
     
     private bool isFinished;
     private Rigidbody rb;
-    private PolygonManager _MapGenerator;
-    
     [Range(0f,360f)] private float angle;
     private float mass;
     private float speed;
@@ -23,10 +20,7 @@ public class Punch2 : MonoBehaviour
         Time.timeScale = 0f;
         
         rb = GetComponent<Rigidbody>();
-
-        _MapGenerator = GameObject.Find("Polygon Creator").GetComponent<PolygonManager>();
-        _MapGenerator.BoxesPlaced = new List<PolygonManager.Box>();
-        _MapGenerator.PlaceBoxes();
+        
     }
     private void Update()
     {
@@ -36,7 +30,8 @@ public class Punch2 : MonoBehaviour
             mass = massInput.text is "" or "-" ? 10 : float.Parse(massInput.text);
             speed = speedInput.text is "" or "-" ? 5 : float.Parse(speedInput.text);
             angle = angleInput.text is "" or "-" ? 0 : float.Parse(angleInput.text);
-            setDefault();
+            if (!isFinished)
+                setDefault();
         }
         
     }

@@ -5,9 +5,9 @@ public class Ballistic : MonoBehaviour
 {
     public float height;
     public float permanentAcc, momentAcc,momentSpeed;
-    private float distance,  time,  angle;
-    private float land_dist, outputTime, outputLandSpeed, outputDistance;
+    private float distance, time, outputTime, outputSpeed, angle;
     private const float g = 9.81f;
+    private bool isFinished = false;
     private bool isLanded = false;
     public TextMeshProUGUI outputText;
     
@@ -58,6 +58,18 @@ public class Ballistic : MonoBehaviour
         speed = Mathf.Sqrt(verticalSpeed*verticalSpeed + horizontalSpeed*horizontalSpeed);
         distance+= Vector3.Distance(transform.position, prevPosition);
         prevPosition = transform.position;
+
+
+        if (transform.position.y <= -0.1f)
+        {
+            if (!isLanded)
+            {
+                outputSpeed = speed;
+                isLanded = true;
+            }
+            vertMove = 0f;
+            //isFinished = true;
+        }
     }
     
 
@@ -71,38 +83,22 @@ public class Ballistic : MonoBehaviour
         time += Time.fixedDeltaTime;
         
         physCalc();
-        LandCheck();
-
+        
+        
         transform.position += new Vector3(0f, vertMove,horizontalMove);
     }
 
-    private void LandCheck()
-    {
-        if (!isLanded)
-        {
-            outputDistance = distance;
-            outputLandSpeed = speed;
-            outputTime = time;
-        }
-        if (transform.position.y <= -0.1f)
-        {
-            isLanded = true;
-            land_dist = transform.position.z;
-            vertMove = 0f;
-        }
-
-    }
     private void Update()
     {
         
         outputText.text = string.Format(
-                                        "\nПуть: {0:f3}" +
+                                        "\nРасстояние: {0:f3}" +
                                         "\nДальность полёта: {1:f3}" +
                                         "\nСкорость в приземлении: {2:f3}"+
-                                        "\nСредняя скорость до приземления: {3:f3}"+
+                                        "\nСредняя скорость: {3:f3}"+
                                         "\n--------"+
                                         "\nВремя: {4:f3}", 
-             distance, land_dist, outputLandSpeed, outputDistance/outputTime, time);
+             distance, transform.position.z, outputSpeed, distance/time, time);
         
         if (Time.timeScale == 0f)
         {
@@ -111,7 +107,8 @@ public class Ballistic : MonoBehaviour
             angle = angleInput.text is "" or "-" ? 0 : float.Parse(angleInput.text);
             permanentAcc = permanentAccInput.text is "" or "-" ? 0 : float.Parse(permanentAccInput.text);
             momentAcc = momentAccInput.text is "" or "-" ? 0 : float.Parse(momentAccInput.text);
-            setDefault();
+            if (!isFinished)
+                setDefault();
         }
     }
     void setDefault()

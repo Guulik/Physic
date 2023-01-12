@@ -6,8 +6,8 @@ using UnityEngine.Serialization;
 public class SpiralMovement : MonoBehaviour
 {
     public float radius;
-    private float Speed;
-    private float A_acceleration,B_acceleration;
+    public float Speed;
+    public float A_acceleration,B_acceleration;
     private float angularSpeed, linearSpeed, freq = 0.5f, distance, RotationsCount, passedTime, angle;
     private float timer = 5f, t1 = 15f;
 
@@ -103,16 +103,6 @@ public class SpiralMovement : MonoBehaviour
             A_acceleration = A_accelereationInput.text is "" or "-" ? 0 : float.Parse(A_accelereationInput.text);
             B_acceleration = B_accelerationInput.text is "" or "-" ? 0 : float.Parse(B_accelerationInput.text);
         }
-    }
-    public void ReadInputs()
-    {
-        timer = Timer.text is "" or "-" ? 0 : float.Parse(Timer.text);
-        t1 = Timer1.text is "" or "-" ? 10 : float.Parse(Timer1.text);
-        radius = RadiusInput.text is "" or "-" ? 0 : float.Parse(RadiusInput.text);
-        Speed = SpeedInput.text is "" or "-" ? 0 : float.Parse(SpeedInput.text);
-        A_acceleration = A_accelereationInput.text is "" or "-" ? 0 : float.Parse(A_accelereationInput.text);
-        B_acceleration = B_accelerationInput.text is "" or "-" ? 0 : float.Parse(B_accelerationInput.text);
-        
     }
 
 }

@@ -13,11 +13,11 @@ public class LaserBeam
 
     private List<GameObject> _refractSurfaces = new ();
     [CanBeNull] private GameObject target = GameObject.FindWithTag("Target");
-    [CanBeNull] private Particles _particles;
+    private Particles _particles;
     
 
-    [CanBeNull] RefractAdjust manager = GameObject.Find("Lenses").GetComponent<RefractAdjust>();
-    [CanBeNull] GameObject LenseManager = GameObject.Find("Lenses");
+    RefractAdjust manager = GameObject.Find("Lenses").GetComponent<RefractAdjust>();
+    GameObject LenseManager = GameObject.Find("Lenses");
     public LaserBeam(Vector3 pos, Vector3 dir, Material material)
     {
         laser = new LineRenderer();
@@ -120,8 +120,7 @@ public class LaserBeam
         }
         else if (hitInfo.collider.gameObject.tag == "Target")
         {
-            if (_particles!= null) _particles.isHitted = true;
-            
+            _particles.isHitted = true;
             laserIndices.Add(hitInfo.point);
             UpdateLaser();
         }
